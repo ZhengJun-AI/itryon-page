@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iTryOn: Project Page</title>
+    <style>
+        /* --- General Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6; margin: 0; background-color: #f8f9fa; color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        h1, h2, h3 { text-align: center; color: #212529; }
+        h1 { font-size: 2.5em; margin-bottom: 10px; }
+        h2 { font-size: 2em; margin-top: 60px; margin-bottom: 30px; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+        p { font-size: 1.1em; text-align: justify; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* --- Header Section --- */
+        .authors, .affiliations, .conference { text-align: center; margin-bottom: 10px; }
+        .authors { font-size: 1.3em; font-weight: 500; }
+        .affiliations { font-size: 1.1em; color: #555; margin-bottom: 15px; }
+        .corresponding { font-size: 0.9em; color: #777; margin-top: 5px; }
+        .conference { font-size: 1.2em; font-weight: bold; color: #d9534f; margin-bottom: 25px; }
+        
+        /* --- Buttons --- */
+        .links { text-align: center; margin-bottom: 40px; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+        .links a { 
+            display: inline-block; 
+            padding: 12px 24px; 
+            background-color: #343a40; 
+            color: white; 
+            border-radius: 30px; 
+            font-size: 1.1em; 
+            font-weight: 600;
+            transition: all 0.3s ease; 
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .links a:hover { 
+            background-color: #007bff; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* --- Abstract Box --- */
+        .abstract-box {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 30px 40px;
+            margin: 0 auto 40px auto;
+            max-width: 900px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        .abstract-box h2 {
+            margin-top: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+        .abstract-box p {
+            font-size: 1em; 
+            line-height: 1.5; 
+            color: #495057;
+            margin: 0;
+        }
+
+        /* --- Citation Box --- */
+        .citation-box {
+            background-color: #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto 60px auto;
+            overflow-x: auto;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.95em;
+            color: #212529;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* --- Image Styles --- */
+        .full-width-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        /* --- Multi-item Carousel Styles --- */
+        .carousel-container { position: relative; }
+        .slides-wrapper {
+            overflow: hidden;
+            background: #fff;
+            padding: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-item {
+            flex-shrink: 0;
+            box-sizing: border-box;
+            padding: 0 10px; 
+            text-align: center;
+        }
+        video { width: 100%; height: auto; border-radius: 5px; }
+        .carousel-nav {
+            position: absolute; top: 50%; width: 100%; display: flex;
+            justify-content: space-between; transform: translateY(-50%); pointer-events: none;
+        }
+        .carousel-nav button {
+            background-color: rgba(0, 0, 0, 0.5); border: none; color: white;
+            width: 40px; height: 40px; cursor: pointer; border-radius: 50%;
+            font-size: 18px; line-height: 1; pointer-events: auto; transition: background-color 0.3s;
+        }
+        .carousel-nav button:hover { background-color: rgba(0, 0, 0, 0.8); }
+        .prev-btn { margin-left: -50px; }
+        .next-btn { margin-right: -50px; }
+        .carousel-dots { text-align: center; margin-top: 15px; }
+        .dot {
+            cursor: pointer; height: 12px; width: 12px; margin: 0 5px;
+            background-color: #bbb; border-radius: 50%; display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .dot.active { background-color: #007bff; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.75em; }
+            .abstract-box { padding: 20px; }
+            .prev-btn { margin-left: 5px; }
+            .next-btn { margin-right: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ================== TITLE, AUTHORS, LINKS ================== -->
+        <h1>iTryOn: Mastering Interactive Video Virtual Try-On<br>with Spatial-Semantic Guidance</h1>
+        
+        <div class="authors">
+            Jun Zheng<sup>1</sup>, Zhengze Xu<sup>2</sup>, Mengting Chen<sup>2</sup>, Jing Wang<sup>1</sup>, Jinsong Lan<sup>2</sup>, <br>
+            Xiaoyong Zhu<sup>2</sup>, Kaifu Zhang<sup>2</sup>, Bo Zheng<sup>2</sup>, Xiaodan Liang<sup>1,*</sup>
+        </div>
+        
+        <div class="affiliations">
+            <sup>1</sup> Shenzhen Campus of Sun Yat-sen University &nbsp;&nbsp;&nbsp;&nbsp; <sup>2</sup> Alibaba Group
+            <div class="corresponding"><sup>*</sup> Corresponding author</div>
+        </div>
+
+        <div class="conference">🎉 Accepted to ICML 2026 🎉</div>
+        
+        <!-- BUTTONS SECTION (Only Paper for now) -->
+        <div class="links">
+            <a href="iTryOn_Paper.pdf" target="_blank">📄 Paper PDF</a>
+            <!-- Buttons for Code and Dataset can be uncommented here in the future -->
+            <!-- <a href="YOUR_LINK" target="_blank">💻 Code</a> -->
+            <!-- <a href="YOUR_LINK" target="_blank">📊 Dataset (VVT-Interact)</a> -->
+        </div>
+
+        <!-- ================== ABSTRACT (NEW CARD STYLE) ================== -->
+        <div class="abstract-box">
+            <h2>Abstract</h2>
+            <p>Video Virtual Try-On (VVT) aims to seamlessly replace a garment on a person in a video with a new one. While existing methods have made significant strides in maintaining temporal consistency, they are predominantly confined to non-interactive scenarios where models merely showcase garments. This limitation overlooks a crucial aspect of real-world apparel presentation: active human-garment interaction. To bridge this gap, we introduce and formalize a new challenging task: Interactive Video Virtual Try-On (Interactive VVT), where subjects in the video actively engage with their clothing (e.g., pulling a hem or unzipping a jacket). This task introduces unique challenges beyond simple texture preservation, including: (1) resolving the semantic ambiguity of interactions from standard pose information, and (2) learning complex garment deformations from video where interactive moments are sparse and brief. To address these challenges, we propose <strong>iTryOn</strong>, a novel framework built upon a large-scale video diffusion Transformer. iTryOn pioneers a multi-level interaction injection mechanism to guide the generation of complex dynamics. At the spatial level, we introduce a garment-agnostic 3D hand prior to provide fine-grained guidance for precise hand-garment contact, effectively resolving spatial ambiguity. At the semantic level, iTryOn leverages global captions for overall context and time-stamped action captions for localized interactions, synchronized via our novel Action-aware Rotational Position Embedding (A-RoPE). Furthermore, we design an action-aware constraint loss to stabilize training and focus the learning process on these critical interactive frames. To facilitate research and evaluation, we construct VVT-Interact, the first large-scale dataset for this task. Extensive experiments demonstrate that iTryOn not only achieves state-of-the-art performance on traditional VVT benchmarks but also establishes a commanding lead in the new interactive setting, marking a significant step towards more dynamic and controllable virtual try-on experiences.</p>
+        </div>
+
+        <!-- ================== QUICKVIEW IMAGE ================== -->
+        <img src="quickview.png" alt="iTryOn tackles the challenges of Interactive Virtual Try-On" class="full-width-image">
+
+        <!-- ================== TEASER RESULTS ================== -->
+        <h2>Interactive Virtual Try-On Results</h2>
+        <div id="teaser-carousel" class="carousel-container">
+            <div class="slides-wrapper">
+                <div class="carousel-slides">
+                    <div class="carousel-item"><video src="teaser/018_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/001_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/002_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/003_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/004_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/005_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/006_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/007_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/008_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/009_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/010_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/011_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/012_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/013_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/014_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/015_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/016_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="teaser/017_converted.mp4" autoplay loop muted playsinline></video></div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="prev-btn">&#10094;</button>
+                <button class="next-btn">&#10095;</button>
+            </div>
+            <div class="carousel-dots"></div>
+        </div>
+        
+        <!-- ================== ARCHITECTURE SECTION ================== -->
+        <h2>Our Approach: The iTryOn Framework</h2>
+        <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Our framework, iTryOn, is built upon a Diffusion Transformer backbone. It uniquely incorporates a multi-level guidance mechanism to handle complex human-garment interactions. A 3D hand prior provides fine-grained spatial cues, while time-stamped action captions offer precise semantic control. This dual guidance, combined with an action-aware loss, enables the generation of physically plausible and controllable interactive try-on videos.
+        </p>
+        <img src="architecture.png" alt="The architecture of the iTryOn framework" class="full-width-image">
+
+        <!-- ================== VVT-INTERACT COMPARISON ================== -->
+        <h2>Comparison on VVT-Interact Dataset</h2>
+        <div id="interact-carousel" class="carousel-container">
+            <div class="slides-wrapper">
+                <div class="carousel-slides">
+                    <div class="carousel-item"><video src="VVT-interact/001_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="VVT-interact/002_converted.mp4" autoplay loop muted playsinline></video></div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="prev-btn">&#10094;</button>
+                <button class="next-btn">&#10095;</button>
+            </div>
+            <div class="carousel-dots"></div>
+        </div>
+
+        <!-- ================== VIVID COMPARISON ================== -->
+        <h2>Comparison on ViViD Dataset</h2>
+         <div id="vivid-carousel" class="carousel-container">
+            <div class="slides-wrapper">
+                <div class="carousel-slides">
+                    <div class="carousel-item"><video src="ViViD/001_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="ViViD/002_converted.mp4" autoplay loop muted playsinline></video></div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="prev-btn">&#10094;</button>
+                <button class="next-btn">&#10095;</button>
+            </div>
+            <div class="carousel-dots"></div>
+        </div>
+
+        <!-- ================== ABLATION STUDY ================== -->
+        <h2>Ablation Study</h2>
+        <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+            We visualize the impact of each component. Simply adding data is insufficient. Spatial guidance enables physical contact, and semantic guidance provides the correct intent, which are both crucial for high-fidelity interactive try-on.
+        </p>
+         <div id="ablation-carousel" class="carousel-container">
+            <div class="slides-wrapper">
+                <div class="carousel-slides">
+                    <div class="carousel-item"><video src="ablation/001_converted.mp4" autoplay loop muted playsinline></video></div>
+                    <div class="carousel-item"><video src="ablation/002_converted.mp4" autoplay loop muted playsinline></video></div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="prev-btn">&#10094;</button>
+                <button class="next-btn">&#10095;</button>
+            </div>
+            <div class="carousel-dots"></div>
+        </div>
+        
+        <!-- ================== CITATION (NEW) ================== -->
+        <h2>Citation</h2>
+        <div class="citation-box">
+<pre><code>@inproceedings{zheng2026itryon,
+  title={iTryOn: Mastering Interactive Video Virtual Try-On with Spatial-Semantic Guidance},
+  author={Zheng, Jun and Xu, Zhengze and Chen, Mengting and Wang, Jing and Lan, Jinsong and Zhu, Xiaoyong and Zhang, Kaifu and Zheng, Bo and Liang, Xiaodan},
+  booktitle={Proceedings of the 43rd International Conference on Machine Learning (ICML)},
+  year={2026}
+}</code></pre>
+        </div>
+
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function initMultiCarousel(carouselId, options = {}) {
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+
+            const settings = {
+                itemsPerPage: options.itemsPerPage || 3,
+                itemsPerPageMobile: options.itemsPerPageMobile || 1,
+                mobileBreakpoint: 768
+            };
+
+            const slidesContainer = carousel.querySelector('.carousel-slides');
+            const items = carousel.querySelectorAll('.carousel-item');
+            const prevBtn = carousel.querySelector('.prev-btn');
+            const nextBtn = carousel.querySelector('.next-btn');
+            const dotsContainer = carousel.querySelector('.carousel-dots');
+            
+            if (items.length === 0) return; 
+            
+            let currentIndex = 0;
+            let currentItemsPerPage = window.innerWidth < settings.mobileBreakpoint ? settings.itemsPerPageMobile : settings.itemsPerPage;
+            let totalPages = Math.ceil(items.length / currentItemsPerPage);
+
+            function setupCarousel() {
+                currentItemsPerPage = window.innerWidth < settings.mobileBreakpoint ? settings.itemsPerPageMobile : settings.itemsPerPage;
+                totalPages = Math.ceil(items.length / currentItemsPerPage);
+                
+                items.forEach(item => {
+                    item.style.flexBasis = `calc(100% / ${currentItemsPerPage})`;
+                });
+
+                dotsContainer.innerHTML = '';
+                if (totalPages > 1) {
+                    for (let i = 0; i < totalPages; i++) {
+                        const dot = document.createElement('span');
+                        dot.classList.add('dot');
+                        dot.dataset.index = i;
+                        dotsContainer.appendChild(dot);
+                    }
+                    
+                    dotsContainer.querySelectorAll('.dot').forEach(dot => {
+                        dot.addEventListener('click', (e) => {
+                            goToPage(parseInt(e.target.dataset.index));
+                        });
+                    });
+                }
+                
+                const navButtons = carousel.querySelector('.carousel-nav');
+                if (totalPages <= 1) {
+                    if (navButtons) navButtons.style.display = 'none';
+                    if (dotsContainer) dotsContainer.style.display = 'none';
+                } else {
+                    if (navButtons) navButtons.style.display = 'flex';
+                    if (dotsContainer) dotsContainer.style.display = 'block';
+                }
+
+                goToPage(0, false); 
+            }
+
+            function goToPage(pageIndex, animate = true) {
+                currentIndex = Math.max(0, Math.min(pageIndex, totalPages - 1));
+                const offset = -currentIndex * 100;
+                
+                slidesContainer.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
+                slidesContainer.style.transform = `translateX(${offset}%)`;
+
+                const dots = dotsContainer.querySelectorAll('.dot');
+                if (dots.length > 0) {
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentIndex);
+                    });
+                }
+            }
+            
+            if(prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    goToPage(currentIndex - 1);
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    goToPage(currentIndex + 1);
+                });
+            }
+            
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    setupCarousel();
+                }, 250);
+            });
+
+            setupCarousel();
+        }
+
+        // --- CONFIGURE YOUR CAROUSELS HERE ---
+        initMultiCarousel('teaser-carousel', { itemsPerPage: 2, itemsPerPageMobile: 1 });
+        initMultiCarousel('interact-carousel', { itemsPerPage: 1, itemsPerPageMobile: 1 });
+        initMultiCarousel('vivid-carousel', { itemsPerPage: 1, itemsPerPageMobile: 1 });
+        initMultiCarousel('ablation-carousel', { itemsPerPage: 1, itemsPerPageMobile: 1 });
+    });
+    </script>
+
+</body>
+</html>
